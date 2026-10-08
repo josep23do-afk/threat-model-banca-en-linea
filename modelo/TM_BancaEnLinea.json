@@ -3,7 +3,7 @@
   "summary": {
     "title": "Modelo de amenazas — Sistema de Banca en Línea (SBL) — Banco Modelo, S.A.",
     "owner": "Luis Francisco Gámez Rodriguez",
-    "description": "Modelo de amenazas (caso académico) de la banca en línea de una entidad ficticia: canales web y móvil, API Gateway, servicios de identidad, cuentas, transferencias, antifraude, middleware ESB, core bancario e integraciones con BANGUAT (ACH/LBTR), procesador de tarjetas, proveedor SMS y RENAP. Metodología: DFD + STRIDE, priorización Riesgo = Probabilidad x Impacto. Versión 0.4.",
+    "description": "Modelo de amenazas (caso académico) de la banca en línea de una entidad ficticia: canales web y móvil, API Gateway, servicios de identidad, cuentas, transferencias, antifraude, middleware ESB, core bancario e integraciones con BANGUAT (ACH/LBTR), procesador de tarjetas, proveedor SMS y RENAP. Metodología: DFD + STRIDE, priorización Riesgo = Probabilidad x Impacto. Versión 1.0.",
     "id": 0
   },
   "detail": {
@@ -1179,14 +1179,14 @@
                   "id": "a480b649-5a3c-5329-b535-e518190ef97b",
                   "title": "T-46 Cross-Site Scripting (XSS) en el portal",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Tampering",
-                  "description": "Alias de beneficiario o descripción de transferencia con script que roba la sesión o altera la interfaz.",
-                  "mitigation": "",
+                  "description": "Alias de beneficiario o descripción de transferencia con script que roba la sesión o altera la interfaz.\nRiesgo inherente: P3 x I4 = 12 (Alto). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Codificación de salida, CSP estricta, sanitización, frameworks con auto-escape.\nDetectivo: Reportes CSP y alertas WAF.\nCorrectivo: Corrección y limpieza de datos almacenados.\nTratamiento: Mitigar | Iniciativa: R-10 | Responsable: Equipo Banca Digital | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 46,
-                  "score": ""
+                  "score": "12"
                 }
               ],
               "hasOpenThreats": true,
@@ -1228,27 +1228,27 @@
                   "id": "b7b954c4-2791-5b18-afd8-d0fa7b57f68f",
                   "title": "T-16 Modificación de la app (repackaging / hooking)",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Tampering",
-                  "description": "Ingeniería inversa y hooking (Frida) para saltar validaciones del cliente o distribuir una app falsa.",
-                  "mitigation": "",
+                  "description": "Ingeniería inversa y hooking (Frida) para saltar validaciones del cliente o distribuir una app falsa.\nRiesgo inherente: P3 x I4 = 12 (Alto). Riesgo residual: 6 (Medio).",
+                  "mitigation": "Ofuscación, RASP, Play Integrity / App Attest, ningún control de seguridad solo en el cliente.\nDetectivo: Rechazo de attestation inválida y monitoreo de tiendas no oficiales.\nCorrectivo: Baja de apps falsas y bloqueo de versiones comprometidas.\nTratamiento: Mitigar | Iniciativa: R-10 | Responsable: Equipo Banca Digital | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 16,
-                  "score": ""
+                  "score": "12"
                 },
                 {
                   "id": "9a42332c-b7df-57e2-a469-5190c224b63a",
                   "title": "T-17 Almacenamiento inseguro en el dispositivo",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Tokens o datos en almacenamiento no cifrado (SharedPreferences/plist).",
-                  "mitigation": "",
+                  "description": "Tokens o datos en almacenamiento no cifrado (SharedPreferences/plist).\nRiesgo inherente: P3 x I3 = 9 (Medio). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Android Keystore / iOS Keychain, no almacenar datos sensibles, MASVS-STORAGE.\nDetectivo: Pruebas MASTG en cada versión.\nCorrectivo: Publicación de versión corregida e invalidación de tokens.\nTratamiento: Mitigar | Iniciativa: R-10 | Responsable: Equipo Banca Digital | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 17,
-                  "score": ""
+                  "score": "9"
                 }
               ],
               "hasOpenThreats": true,
@@ -1337,14 +1337,14 @@
                   "id": "f71f2dd3-5ac6-5d2a-b65a-673f14edae61",
                   "title": "T-12 Ataque DDoS al portal y a las APIs",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Denial of service",
-                  "description": "Ataques volumétricos o de capa 7 dejan sin servicio la banca en línea.",
-                  "mitigation": "",
+                  "description": "Ataques volumétricos o de capa 7 dejan sin servicio la banca en línea.\nRiesgo inherente: P4 x I4 = 16 (Alto). Riesgo residual: 6 (Medio).",
+                  "mitigation": "Servicio anti-DDoS gestionado, reglas de capa 7, autoescalado, caché de estáticos.\nDetectivo: Monitoreo de tráfico y alertas del proveedor.\nCorrectivo: Activación del playbook DDoS con el proveedor.\nTratamiento: Mitigar + Transferir (SLA del proveedor anti-DDoS) | Iniciativa: R-14 | Responsable: Arquitectura / Operaciones TI | Fecha objetivo: 2027-09-30",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 12,
-                  "score": ""
+                  "score": "16"
                 }
               ],
               "hasOpenThreats": true,
@@ -1386,40 +1386,40 @@
                   "id": "f63dee71-33f5-5f0b-823e-69d8d746a9c3",
                   "title": "T-13 Abuso de API y envío masivo de OTP (SMS pumping)",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Denial of service",
-                  "description": "Llamadas automatizadas sin límite agotan recursos o generan miles de SMS con costo para el banco.",
-                  "mitigation": "",
+                  "description": "Llamadas automatizadas sin límite agotan recursos o generan miles de SMS con costo para el banco.\nRiesgo inherente: P4 x I3 = 12 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Rate limiting y cuotas por cliente y endpoint; máximo de OTP por sesión; CAPTCHA en endpoints anónimos.\nDetectivo: Alertas de consumo anómalo de SMS y de APIs.\nCorrectivo: Bloqueo de origen y ajuste de cuotas.\nTratamiento: Mitigar | Iniciativa: R-04 | Responsable: Arquitectura / DevSecOps | Fecha objetivo: 2026-12-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 13,
-                  "score": ""
+                  "score": "12"
                 },
                 {
                   "id": "f51ba138-f51b-5bd5-93ef-af178d93d62a",
                   "title": "T-14 Endpoints internos o versiones obsoletas expuestas",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "Rutas administrativas o versiones antiguas de la API (/v1) quedan publicadas sin los controles actuales.",
-                  "mitigation": "",
+                  "description": "Rutas administrativas o versiones antiguas de la API (/v1) quedan publicadas sin los controles actuales.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Inventario de APIs, deny-by-default, retiro de versiones obsoletas (OWASP API9:2023).\nDetectivo: Descubrimiento periódico de APIs y comparación con inventario.\nCorrectivo: Despublicación inmediata de la ruta.\nTratamiento: Mitigar | Iniciativa: R-04 | Responsable: Arquitectura / DevSecOps | Fecha objetivo: 2026-12-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 14,
-                  "score": ""
+                  "score": "15"
                 },
                 {
                   "id": "46b26a9d-5fae-5551-b004-8951bc70f724",
                   "title": "T-44 Explotación de vulnerabilidad conocida (CVE) en DMZ",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "Componentes sin parches en el gateway o contenedores permiten ejecución remota de código.",
-                  "mitigation": "",
+                  "description": "Componentes sin parches en el gateway o contenedores permiten ejecución remota de código.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Gestión de parches, hardening CIS, escaneo de imágenes y de vulnerabilidades.\nDetectivo: Escaneo continuo y EDR en hosts.\nCorrectivo: Aislamiento del nodo, reconstrucción desde imagen limpia.\nTratamiento: Mitigar | Iniciativa: R-05 | Responsable: Infraestructura y Redes | Fecha objetivo: 2026-11-30",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 44,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -1543,40 +1543,40 @@
                   "id": "eb6fd2ec-dd8f-549b-996e-af3145abace3",
                   "title": "T-09 Acceso a cuentas de otros clientes (IDOR / BOLA)",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Critical",
                   "type": "Elevation of privilege",
-                  "description": "Cambiando el identificador de cuenta en la petición un cliente consulta saldos y movimientos de otro.",
-                  "mitigation": "",
+                  "description": "Cambiando el identificador de cuenta en la petición un cliente consulta saldos y movimientos de otro.\nRiesgo inherente: P4 x I5 = 20 (Crítico). Riesgo residual: 5 (Bajo).",
+                  "mitigation": "Autorización a nivel de objeto basada en el 'sub' del token; identificadores no secuenciales; pruebas automatizadas de autorización.\nDetectivo: Alerta cuando un usuario consulta varias cuentas que no le pertenecen.\nCorrectivo: Bloqueo del usuario, corrección del endpoint y notificación según regulación.\nTratamiento: Mitigar | Iniciativa: R-02 | Responsable: Equipo Banca Digital | Fecha objetivo: 2026-12-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 9,
-                  "score": ""
+                  "score": "20"
                 },
                 {
                   "id": "91bd8361-ccc4-50ea-9044-850a8c52f204",
                   "title": "T-10 Exposición excesiva de datos en respuestas",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Information disclosure",
-                  "description": "La API devuelve el objeto completo (DPI, dirección, datos internos) y el front-end solo oculta campos.",
-                  "mitigation": "",
+                  "description": "La API devuelve el objeto completo (DPI, dirección, datos internos) y el front-end solo oculta campos.\nRiesgo inherente: P3 x I4 = 12 (Alto). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "DTOs por caso de uso, enmascaramiento de DPI y cuenta, esquema de respuesta validado.\nDetectivo: Pruebas de contrato en CI.\nCorrectivo: Corrección de la respuesta y análisis de exposición.\nTratamiento: Mitigar | Iniciativa: R-02 | Responsable: Equipo Banca Digital | Fecha objetivo: 2026-12-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 10,
-                  "score": ""
+                  "score": "12"
                 },
                 {
                   "id": "acc2f663-5185-5e85-96b3-b670cb81a3b3",
                   "title": "T-11 Inyección SQL en filtros de movimientos",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Tampering",
-                  "description": "Parámetros de búsqueda concatenados en consultas permiten leer o modificar datos.",
-                  "mitigation": "",
+                  "description": "Parámetros de búsqueda concatenados en consultas permiten leer o modificar datos.\nRiesgo inherente: P2 x I5 = 10 (Medio). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Consultas parametrizadas/ORM, validación de entrada, SAST (Semgrep) y DAST (ZAP) en el pipeline.\nDetectivo: Firmas WAF y alertas de errores SQL.\nCorrectivo: Parche y revisión de datos afectados.\nTratamiento: Mitigar | Iniciativa: R-02 | Responsable: Equipo Banca Digital | Fecha objetivo: 2026-12-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 11,
-                  "score": ""
+                  "score": "10"
                 }
               ],
               "hasOpenThreats": true,
@@ -1818,14 +1818,14 @@
                   "id": "fe7d9373-fb3c-592c-b055-83725dd3a036",
                   "title": "T-24 Exfiltración de la base de clientes (PII)",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Information disclosure",
-                  "description": "Acceso a la base o a sus respaldos sin cifrar expone datos personales de todos los clientes.",
-                  "mitigation": "",
+                  "description": "Acceso a la base o a sus respaldos sin cifrar expone datos personales de todos los clientes.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Cifrado TDE y a nivel de campo (DPI, teléfono), backups cifrados, segmentación, DAM.\nDetectivo: DAM con alertas de consultas masivas.\nCorrectivo: Contención, notificación a afectados y a la SIB.\nTratamiento: Mitigar | Iniciativa: R-16 | Responsable: DBA / Seguridad de la Información | Fecha objetivo: 2027-04-07",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 24,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -1870,14 +1870,14 @@
                   "id": "746900a0-a9a6-51df-a2df-a42e0a628401",
                   "title": "T-45 Movimiento lateral hacia la zona de datos",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "Desde un servicio comprometido en DMZ o zona de aplicaciones el atacante alcanza el middleware y el core por una red plana.",
-                  "mitigation": "",
+                  "description": "Desde un servicio comprometido en DMZ o zona de aplicaciones el atacante alcanza el middleware y el core por una red plana.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Microsegmentación, firewall entre zonas, mTLS obligatorio, Zero Trust.\nDetectivo: Detección de conexiones este-oeste no autorizadas.\nCorrectivo: Aislamiento del segmento y respuesta a incidentes.\nTratamiento: Mitigar | Iniciativa: R-12 | Responsable: Infraestructura y Redes | Fecha objetivo: 2027-07-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 45,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -1967,14 +1967,14 @@
                   "id": "af774ef9-d8fd-5881-8333-7543d1f5133e",
                   "title": "T-49 Política permisiva en la bóveda de secretos",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Elevation of privilege",
-                  "description": "Políticas amplias permiten que un servicio lea secretos de otros servicios.",
-                  "mitigation": "",
+                  "description": "Políticas amplias permiten que un servicio lea secretos de otros servicios.\nRiesgo inherente: P2 x I5 = 10 (Medio). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Políticas por servicio (mínimo privilegio), autenticación por identidad de carga de trabajo.\nDetectivo: Auditoría de accesos a la bóveda.\nCorrectivo: Revocación y rotación de secretos.\nTratamiento: Mitigar | Iniciativa: R-12 | Responsable: Infraestructura y Redes | Fecha objetivo: 2027-07-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 49,
-                  "score": ""
+                  "score": "10"
                 }
               ],
               "hasOpenThreats": true,
@@ -2101,14 +2101,14 @@
                   "id": "fd80928b-e3a7-513a-ade3-8e68f5db5efa",
                   "title": "T-37 Fuga de información en el proveedor de mensajería",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Un compromiso del proveedor expone teléfonos, correos y contenido de alertas.",
-                  "mitigation": "",
+                  "description": "Un compromiso del proveedor expone teléfonos, correos y contenido de alertas.\nRiesgo inherente: P2 x I3 = 6 (Medio). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Cláusulas de seguridad y confidencialidad, mensajes sin datos sensibles.\nDetectivo: Evaluación anual del proveedor.\nCorrectivo: Activación del plan de respuesta con el proveedor.\nTratamiento: Transferir (contrato y cláusulas) + minimizar datos | Iniciativa: R-17 | Responsable: Seguridad de la Información / Compras | Fecha objetivo: 2027-08-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 37,
-                  "score": ""
+                  "score": "6"
                 }
               ],
               "hasOpenThreats": true,
@@ -2255,14 +2255,14 @@
                   "id": "367a862a-4bdb-56e4-90a4-451bf929e9fd",
                   "title": "T-30 Suplantación de un operador interno",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Spoofing",
-                  "description": "Credenciales de un operador obtenidas por phishing interno permiten operar el back-office.",
-                  "mitigation": "",
+                  "description": "Credenciales de un operador obtenidas por phishing interno permiten operar el back-office.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "SSO con MFA resistente a phishing (Entra ID), acceso condicional solo desde dispositivos corporativos.\nDetectivo: Alertas de inicio de sesión riesgoso.\nCorrectivo: Bloqueo de la cuenta y revisión de acciones realizadas.\nTratamiento: Mitigar | Iniciativa: R-09 | Responsable: Operaciones / Seguridad de la Información | Fecha objetivo: 2027-03-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 30,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -2339,40 +2339,40 @@
                   "id": "e7f6d38a-17a4-5b79-b0b4-aa95ae95bca3",
                   "title": "T-29 Escalamiento de privilegios en back-office",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "Un operador accede a funciones de supervisor (cambio de límites, desbloqueos) por fallas de control de acceso.",
-                  "mitigation": "",
+                  "description": "Un operador accede a funciones de supervisor (cambio de límites, desbloqueos) por fallas de control de acceso.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "RBAC granular verificado en servidor, maker-checker, PAM para roles sensibles.\nDetectivo: Alertas por acciones fuera del rol.\nCorrectivo: Revocación del acceso y revisión de cambios.\nTratamiento: Mitigar | Iniciativa: R-09 | Responsable: Operaciones / Seguridad de la Información | Fecha objetivo: 2027-03-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 29,
-                  "score": ""
+                  "score": "15"
                 },
                 {
                   "id": "e4bf95a1-d258-5bb2-ac06-a9d4996af095",
                   "title": "T-31 Repudio de cambios hechos por operadores",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Repudiation",
-                  "description": "Un operador niega haber modificado datos de un cliente y no hay evidencia suficiente.",
-                  "mitigation": "",
+                  "description": "Un operador niega haber modificado datos de un cliente y no hay evidencia suficiente.\nRiesgo inherente: P3 x I4 = 12 (Alto). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Bitácora inmutable por acción con usuario, motivo y ticket; maker-checker.\nDetectivo: Revisión periódica de cambios sensibles.\nCorrectivo: Investigación con evidencia y medidas disciplinarias.\nTratamiento: Mitigar | Iniciativa: R-09 | Responsable: Operaciones / Seguridad de la Información | Fecha objetivo: 2027-03-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 31,
-                  "score": ""
+                  "score": "12"
                 },
                 {
                   "id": "a5c3732b-48f6-564d-98fd-dd90bb4e0e78",
                   "title": "T-32 Cambio fraudulento del teléfono o correo del cliente",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Tampering",
-                  "description": "Vía soporte se cambia el número asociado al OTP y luego se toma control de la cuenta.",
-                  "mitigation": "",
+                  "description": "Vía soporte se cambia el número asociado al OTP y luego se toma control de la cuenta.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Verificación fuera de banda, periodo de enfriamiento de 48 h para transferencias tras el cambio, aviso al contacto anterior.\nDetectivo: Alerta por cambio de contacto seguido de alta de beneficiario o transferencia.\nCorrectivo: Reversión del cambio y bloqueo de operaciones.\nTratamiento: Mitigar | Iniciativa: R-09 | Responsable: Operaciones / Seguridad de la Información | Fecha objetivo: 2027-03-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 32,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -2414,27 +2414,27 @@
                   "id": "2a359585-ae45-59b4-a9ee-ef081f7c1016",
                   "title": "T-27 Secretos embebidos en código y configuración",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Critical",
                   "type": "Information disclosure",
-                  "description": "Contraseñas, API keys o certificados en el repositorio o en variables del pipeline son extraídos por un atacante o ex colaborador.",
-                  "mitigation": "",
+                  "description": "Contraseñas, API keys o certificados en el repositorio o en variables del pipeline son extraídos por un atacante o ex colaborador.\nRiesgo inherente: P4 x I5 = 20 (Crítico). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Bóveda de secretos, secret scanning en pre-commit y pipeline, rotación periódica.\nDetectivo: Alertas del escáner y de uso de credenciales desde orígenes no esperados.\nCorrectivo: Rotación inmediata y purga del historial.\nTratamiento: Mitigar | Iniciativa: R-03 | Responsable: DevSecOps | Fecha objetivo: 2026-11-30",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 27,
-                  "score": ""
+                  "score": "20"
                 },
                 {
                   "id": "58a08c54-57e1-5141-8ffc-bffb3b47e9db",
                   "title": "T-28 Compromiso de la cadena de suministro",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "Una dependencia maliciosa o un runner comprometido inyecta código en los artefactos desplegados.",
-                  "mitigation": "",
+                  "description": "Una dependencia maliciosa o un runner comprometido inyecta código en los artefactos desplegados.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "SCA (OWASP Dependency-Check) bloqueante, SBOM, firma y verificación de artefactos, revisión obligatoria de PR.\nDetectivo: Verificación de firma en el despliegue; alertas de nuevas dependencias.\nCorrectivo: Rollback a artefacto firmado previo e investigación.\nTratamiento: Mitigar | Iniciativa: R-13 | Responsable: DevSecOps | Fecha objetivo: 2027-06-30",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 28,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -2481,40 +2481,40 @@
                   "id": "8162a393-f629-5ffb-826c-528336800eb4",
                   "title": "T-33 Datos sensibles en bitácoras",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Tokens, contraseñas o PAN quedan registrados en logs accesibles por más personas.",
-                  "mitigation": "",
+                  "description": "Tokens, contraseñas o PAN quedan registrados en logs accesibles por más personas.\nRiesgo inherente: P3 x I3 = 9 (Medio). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Enmascaramiento en origen, listas de campos prohibidos, control de acceso al SIEM.\nDetectivo: Búsquedas periódicas de patrones sensibles en logs.\nCorrectivo: Purga y rotación de secretos expuestos.\nTratamiento: Mitigar | Iniciativa: R-11 | Responsable: SOC | Fecha objetivo: 2027-02-28",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 33,
-                  "score": ""
+                  "score": "9"
                 },
                 {
                   "id": "de15ec6a-4414-51b2-a9a0-cefba59eec1b",
                   "title": "T-34 Borrado o alteración de bitácoras",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Tampering",
-                  "description": "Un atacante con privilegios borra eventos para ocultar su actividad.",
-                  "mitigation": "",
+                  "description": "Un atacante con privilegios borra eventos para ocultar su actividad.\nRiesgo inherente: P2 x I4 = 8 (Medio). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Envío en tiempo real, almacenamiento WORM, integridad por hash.\nDetectivo: Alertas por interrupción del envío de logs.\nCorrectivo: Recuperación desde copia WORM.\nTratamiento: Mitigar | Iniciativa: R-11 | Responsable: SOC | Fecha objetivo: 2027-02-28",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 34,
-                  "score": ""
+                  "score": "8"
                 },
                 {
                   "id": "f06c7eca-1671-585b-9b6d-871ba2c246b8",
                   "title": "T-35 Bitácoras insuficientes o sin sincronización de hora",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Repudiation",
-                  "description": "Eventos incompletos o con relojes desfasados impiden reconstruir un incidente.",
-                  "mitigation": "",
+                  "description": "Eventos incompletos o con relojes desfasados impiden reconstruir un incidente.\nRiesgo inherente: P3 x I3 = 9 (Medio). Riesgo residual: 2 (Bajo).",
+                  "mitigation": "Estándar de logging (OWASP Logging Cheat Sheet), NTP en todos los nodos.\nDetectivo: Revisión de cobertura de eventos en el SIEM.\nCorrectivo: Ajuste de fuentes de log.\nTratamiento: Mitigar | Iniciativa: R-11 | Responsable: SOC | Fecha objetivo: 2027-02-28",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 35,
-                  "score": ""
+                  "score": "9"
                 }
               ],
               "hasOpenThreats": true,
@@ -2776,14 +2776,14 @@
                   "id": "11bce15d-1305-5510-85f8-b46eeb3a0c98",
                   "title": "T-15 Interceptación del tráfico móvil (MitM)",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Information disclosure",
-                  "description": "Sin certificate pinning un atacante con un certificado instalado en el dispositivo lee y altera el tráfico.",
-                  "mitigation": "",
+                  "description": "Sin certificate pinning un atacante con un certificado instalado en el dispositivo lee y altera el tráfico.\nRiesgo inherente: P3 x I4 = 12 (Alto). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "TLS 1.3, certificate pinning, detección de root/jailbreak y de proxys.\nDetectivo: Telemetría de la app sobre fallos de pinning.\nCorrectivo: Rotación de pines y actualización forzada de la app.\nTratamiento: Mitigar | Iniciativa: R-10 | Responsable: Equipo Banca Digital | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 15,
-                  "score": ""
+                  "score": "12"
                 }
               ],
               "isTrustBoundary": false,
@@ -3330,14 +3330,14 @@
                   "id": "06a6b14f-fd86-5006-8723-efe57366948e",
                   "title": "T-43 Exposición o abuso de la consulta de DPI",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "La integración con RENAP es usada para enumerar ciudadanos o la respuesta completa se almacena sin necesidad.",
-                  "mitigation": "",
+                  "description": "La integración con RENAP es usada para enumerar ciudadanos o la respuesta completa se almacena sin necesidad.\nRiesgo inherente: P2 x I4 = 8 (Medio). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Consulta solo con consentimiento y sesión de enrolamiento válida; almacenar solo el resultado de validación.\nDetectivo: Monitoreo de volumen de consultas.\nCorrectivo: Suspensión de la integración y revisión.\nTratamiento: Mitigar | Iniciativa: R-17 | Responsable: Seguridad de la Información / Compras | Fecha objetivo: 2027-08-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 43,
-                  "score": ""
+                  "score": "8"
                 }
               ],
               "isTrustBoundary": false,
@@ -4274,14 +4274,14 @@
                   "id": "2ddd732d-cd37-5c6c-b02a-37f97bcaf84c",
                   "title": "T-01 Toma de cuenta por phishing (robo de credenciales)",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Critical",
                   "type": "Spoofing",
-                  "description": "Un atacante clona el sitio del banco o envía enlaces maliciosos y obtiene usuario y contraseña del cliente para iniciar sesión en su nombre.",
-                  "mitigation": "",
+                  "description": "Un atacante clona el sitio del banco o envía enlaces maliciosos y obtiene usuario y contraseña del cliente para iniciar sesión en su nombre.\nRiesgo inherente: P5 x I5 = 25 (Crítico). Riesgo residual: 8 (Medio).",
+                  "mitigation": "MFA push con number matching / FIDO2; detección de dispositivo nuevo; monitoreo y baja de dominios look-alike; educación al cliente.\nDetectivo: Alertas por inicio de sesión desde dispositivo, IP o país nuevo; correlación SIEM de login + alta de beneficiario.\nCorrectivo: Bloqueo preventivo de la cuenta, reverso de operaciones, reseteo de credenciales y comunicación al cliente.\nTratamiento: Mitigar + Transferir (póliza de ciberriesgo) | Iniciativa: R-01 | Responsable: Equipo IAM | Fecha objetivo: 2026-12-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 1,
-                  "score": ""
+                  "score": "25"
                 }
               ],
               "hasOpenThreats": true,
@@ -4512,40 +4512,40 @@
                   "id": "2f529267-133c-57a0-accd-41d07203b4db",
                   "title": "T-02 Credential stuffing y fuerza bruta contra el login",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Critical",
                   "type": "Spoofing",
-                  "description": "Uso automatizado de listas de credenciales filtradas en otros servicios para adivinar contraseñas de clientes.",
-                  "mitigation": "",
+                  "description": "Uso automatizado de listas de credenciales filtradas en otros servicios para adivinar contraseñas de clientes.\nRiesgo inherente: P5 x I4 = 20 (Crítico). Riesgo residual: 6 (Medio).",
+                  "mitigation": "Rate limiting por IP, cuenta y dispositivo; bloqueo progresivo; CAPTCHA adaptativo; verificación contra contraseñas filtradas.\nDetectivo: Regla SIEM: picos de autenticaciones fallidas y tasa de éxito anómala por ASN.\nCorrectivo: Bloqueo de IP/ASN en WAF, reseteo forzado de contraseñas afectadas.\nTratamiento: Mitigar | Iniciativa: R-01 | Responsable: Equipo IAM | Fecha objetivo: 2026-12-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 2,
-                  "score": ""
+                  "score": "20"
                 },
                 {
                   "id": "bb293bba-e2d7-5aa9-a232-21744185a8d3",
                   "title": "T-06 Enumeración de usuarios",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Mensajes de error o tiempos de respuesta diferentes revelan si un usuario existe.",
-                  "mitigation": "",
+                  "description": "Mensajes de error o tiempos de respuesta diferentes revelan si un usuario existe.\nRiesgo inherente: P4 x I2 = 8 (Medio). Riesgo residual: 2 (Bajo).",
+                  "mitigation": "Mensajes genéricos y tiempos de respuesta constantes en login y recuperación.\nDetectivo: Detección de barridos de nombres de usuario.\nCorrectivo: Ajuste de mensajes y bloqueo del origen.\nTratamiento: Mitigar | Iniciativa: R-01 | Responsable: Equipo IAM | Fecha objetivo: 2026-12-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 6,
-                  "score": ""
+                  "score": "8"
                 },
                 {
                   "id": "1dbccd33-fc83-5735-ba25-705ec0e247ca",
                   "title": "T-47 Bloqueo masivo de cuentas inducido",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Denial of service",
-                  "description": "El atacante provoca bloqueos de cuentas legítimas con intentos fallidos deliberados.",
-                  "mitigation": "",
+                  "description": "El atacante provoca bloqueos de cuentas legítimas con intentos fallidos deliberados.\nRiesgo inherente: P3 x I3 = 9 (Medio). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Bloqueo temporal progresivo (no permanente), CAPTCHA, desbloqueo autoservicio con MFA.\nDetectivo: Alerta por volumen inusual de bloqueos.\nCorrectivo: Desbloqueo masivo controlado y filtrado del origen.\nTratamiento: Mitigar | Iniciativa: R-01 | Responsable: Equipo IAM | Fecha objetivo: 2026-12-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 47,
-                  "score": ""
+                  "score": "9"
                 }
               ],
               "hasOpenThreats": true,
@@ -4587,14 +4587,14 @@
                   "id": "97c754f5-9de9-5361-916a-ec51db0fd8a0",
                   "title": "T-03 Interceptación del OTP por SIM swapping",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Critical",
                   "type": "Spoofing",
-                  "description": "El atacante obtiene un duplicado de la SIM del cliente y recibe el OTP por SMS para completar el login o confirmar transferencias.",
-                  "mitigation": "",
+                  "description": "El atacante obtiene un duplicado de la SIM del cliente y recibe el OTP por SMS para completar el login o confirmar transferencias.\nRiesgo inherente: P4 x I5 = 20 (Crítico). Riesgo residual: 8 (Medio).",
+                  "mitigation": "Consulta de cambio reciente de SIM con operadores antes de enviar OTP; migración a push/FIDO2; OTP ligado a la transacción.\nDetectivo: Alerta cuando el OTP se usa tras un cambio de SIM o desde dispositivo nuevo.\nCorrectivo: Suspensión de canal SMS para la cuenta, verificación presencial o por videollamada.\nTratamiento: Evitar (retirar SMS como factor principal) + Mitigar | Iniciativa: R-01 | Responsable: Equipo IAM | Fecha objetivo: 2026-12-15",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 3,
-                  "score": ""
+                  "score": "20"
                 }
               ],
               "hasOpenThreats": true,
@@ -4636,14 +4636,14 @@
                   "id": "89ace580-e8e1-514c-b30a-32c8586cf191",
                   "title": "T-04 Falsificación o aceptación indebida de tokens JWT",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Spoofing",
-                  "description": "Tokens aceptados con 'alg: none', claves débiles o sin validar iss/aud/exp permiten a un atacante fabricar identidades.",
-                  "mitigation": "",
+                  "description": "Tokens aceptados con 'alg: none', claves débiles o sin validar iss/aud/exp permiten a un atacante fabricar identidades.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 5 (Bajo).",
+                  "mitigation": "Firma RS256/ES256 con claves en HSM; validación estricta de iss, aud, exp y nbf en el API Gateway; rotación de claves JWKS.\nDetectivo: Registro de tokens rechazados y alertas por firmas inválidas.\nCorrectivo: Rotación inmediata de claves y revocación de tokens activos.\nTratamiento: Mitigar | Iniciativa: R-04 | Responsable: Arquitectura / DevSecOps | Fecha objetivo: 2026-12-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 4,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -4685,14 +4685,14 @@
                   "id": "2eb4325c-10f2-5902-8744-9972ca7d5ced",
                   "title": "T-05 Secuestro de sesión y reuso de refresh token",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Spoofing",
-                  "description": "Robo del token desde el dispositivo o vía XSS y reuso del refresh token para mantener acceso persistente.",
-                  "mitigation": "",
+                  "description": "Robo del token desde el dispositivo o vía XSS y reuso del refresh token para mantener acceso persistente.\nRiesgo inherente: P4 x I4 = 16 (Alto). Riesgo residual: 6 (Medio).",
+                  "mitigation": "Tokens de acceso de vida corta (5 min); rotación de refresh token con detección de reuso; cookies HttpOnly/Secure/SameSite; DPoP.\nDetectivo: Alerta por uso concurrente de la misma sesión desde IPs distantes.\nCorrectivo: Revocación de todas las sesiones del cliente y reautenticación.\nTratamiento: Mitigar | Iniciativa: R-10 | Responsable: Equipo Banca Digital | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 5,
-                  "score": ""
+                  "score": "16"
                 }
               ],
               "hasOpenThreats": true,
@@ -4739,14 +4739,14 @@
                   "id": "36080934-54d7-5806-800d-1fba422331d2",
                   "title": "T-36 Acceso no autenticado a Redis",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Una instancia Redis sin autenticación o expuesta permite leer y alterar sesiones activas.",
-                  "mitigation": "",
+                  "description": "Una instancia Redis sin autenticación o expuesta permite leer y alterar sesiones activas.\nRiesgo inherente: P2 x I4 = 8 (Medio). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "ACL y contraseña en Redis, TLS, red privada, deshabilitar comandos peligrosos.\nDetectivo: Escaneo de configuración y alertas de conexiones desde orígenes no autorizados.\nCorrectivo: Rotación de credenciales e invalidación de sesiones.\nTratamiento: Mitigar | Iniciativa: R-12 | Responsable: Infraestructura y Redes | Fecha objetivo: 2027-07-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 36,
-                  "score": ""
+                  "score": "8"
                 }
               ],
               "hasOpenThreats": true,
@@ -4843,14 +4843,14 @@
                   "id": "409fd0e7-f74b-55ea-8b47-95e4b8ab3f22",
                   "title": "T-26 Hash de contraseñas débil",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Si la base de identidad se filtra, algoritmos como MD5/SHA-1 permiten recuperar contraseñas.",
-                  "mitigation": "",
+                  "description": "Si la base de identidad se filtra, algoritmos como MD5/SHA-1 permiten recuperar contraseñas.\nRiesgo inherente: P2 x I5 = 10 (Medio). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Argon2id / bcrypt con sal y pepper en HSM.\nDetectivo: Auditoría de configuración del IdP.\nCorrectivo: Rehash progresivo en el siguiente login y reseteo forzado si hay fuga.\nTratamiento: Mitigar | Iniciativa: R-16 | Responsable: DBA / Seguridad de la Información | Fecha objetivo: 2027-04-07",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 26,
-                  "score": ""
+                  "score": "10"
                 }
               ],
               "hasOpenThreats": true,
@@ -5481,14 +5481,14 @@
                   "id": "69f97fec-2088-5638-bdae-642c63e0966e",
                   "title": "T-38 Smishing que suplanta al banco",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Spoofing",
-                  "description": "Mensajes SMS falsos con el nombre del banco dirigen a los clientes a sitios de phishing.",
-                  "mitigation": "",
+                  "description": "Mensajes SMS falsos con el nombre del banco dirigen a los clientes a sitios de phishing.\nRiesgo inherente: P4 x I3 = 12 (Alto). Riesgo residual: 6 (Medio).",
+                  "mitigation": "Registro de sender ID con operadores; mensajes sin enlaces; campañas de concientización.\nDetectivo: Monitoreo de reportes de clientes y de dominios fraudulentos.\nCorrectivo: Solicitud de baja de dominios y bloqueo con operadores.\nTratamiento: Mitigar | Iniciativa: R-07 | Responsable: Equipo IAM | Fecha objetivo: 2027-04-07",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 38,
-                  "score": ""
+                  "score": "12"
                 }
               ],
               "isTrustBoundary": false,
@@ -6023,14 +6023,14 @@
                   "id": "59d28a54-8eb5-5cd5-be4a-1fbad8facf7d",
                   "title": "T-08 Manipulación de parámetros de la transferencia",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Critical",
                   "type": "Tampering",
-                  "description": "Interceptando la petición (proxy) se altera monto, cuenta origen o destino, o se añaden campos no previstos (mass assignment).",
-                  "mitigation": "",
+                  "description": "Interceptando la petición (proxy) se altera monto, cuenta origen o destino, o se añaden campos no previstos (mass assignment).\nRiesgo inherente: P4 x I5 = 20 (Crítico). Riesgo residual: 5 (Bajo).",
+                  "mitigation": "Validación y recálculo server-side; esquema estricto de entrada (allowlist de campos); verificación de que la cuenta origen pertenece al usuario; firma de transacción.\nDetectivo: Alertas por discrepancia entre lo confirmado y lo ejecutado; pruebas DAST periódicas.\nCorrectivo: Reverso de la operación y corrección del endpoint vulnerable.\nTratamiento: Mitigar | Iniciativa: R-02 | Responsable: Equipo Banca Digital | Fecha objetivo: 2026-12-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 8,
-                  "score": ""
+                  "score": "20"
                 }
               ],
               "hasOpenThreats": true,
@@ -6107,27 +6107,27 @@
                   "id": "ac41e407-b8b6-530c-aca1-bead10bdb51d",
                   "title": "T-39 Evasión del antifraude o fallo abierto",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "Fraccionamiento de montos bajo los umbrales o explotación de que, si el antifraude no responde, la transacción se aprueba (fail-open).",
-                  "mitigation": "",
+                  "description": "Fraccionamiento de montos bajo los umbrales o explotación de que, si el antifraude no responde, la transacción se aprueba (fail-open).\nRiesgo inherente: P3 x I4 = 12 (Alto). Riesgo residual: 6 (Medio).",
+                  "mitigation": "Reglas acumulativas (velocidad, monto diario), fail-closed para montos altos, límites por beneficiario nuevo.\nDetectivo: Tableros de transacciones aprobadas sin score; alertas de fraccionamiento.\nCorrectivo: Retención de fondos y revisión manual.\nTratamiento: Mitigar | Iniciativa: R-15 | Responsable: Riesgo Operativo y Fraude | Fecha objetivo: 2027-10-07",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 39,
-                  "score": ""
+                  "score": "12"
                 },
                 {
                   "id": "3117f003-d094-5186-9e17-e6392feb297b",
                   "title": "T-40 Alteración de reglas antifraude",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Tampering",
-                  "description": "Un usuario interno modifica umbrales o listas blancas para dejar pasar operaciones fraudulentas.",
-                  "mitigation": "",
+                  "description": "Un usuario interno modifica umbrales o listas blancas para dejar pasar operaciones fraudulentas.\nRiesgo inherente: P2 x I4 = 8 (Medio). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Control de cambios con doble aprobación y versionado de reglas.\nDetectivo: Bitácora de cambios de reglas revisada por Riesgo.\nCorrectivo: Reversión a la versión aprobada e investigación.\nTratamiento: Mitigar | Iniciativa: R-15 | Responsable: Riesgo Operativo y Fraude | Fecha objetivo: 2027-10-07",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 40,
-                  "score": ""
+                  "score": "8"
                 }
               ],
               "hasOpenThreats": true,
@@ -6169,14 +6169,14 @@
                   "id": "b96d44e0-0430-50b0-8d74-f2fada95b9dc",
                   "title": "T-07 Repudio de transferencias por parte del cliente",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Repudiation",
-                  "description": "El cliente niega haber ordenado una transferencia y el banco no puede demostrar quién, cuándo y desde dónde la autorizó.",
-                  "mitigation": "",
+                  "description": "El cliente niega haber ordenado una transferencia y el banco no puede demostrar quién, cuándo y desde dónde la autorizó.\nRiesgo inherente: P4 x I4 = 16 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Firma de transacción con factor ligado a monto y destino; evidencia (dispositivo, IP, geolocalización, hash) firmada en HSM.\nDetectivo: Notificación en tiempo real al cliente; bitácora inmutable consultable por el área de reclamos.\nCorrectivo: Proceso de disputa con evidencia firmada y conciliación.\nTratamiento: Mitigar | Iniciativa: R-06 | Responsable: Equipo Banca Digital | Fecha objetivo: 2027-01-07",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 7,
-                  "score": ""
+                  "score": "16"
                 }
               ],
               "hasOpenThreats": true,
@@ -6223,14 +6223,14 @@
                   "id": "3d452770-3a92-577c-b4fc-154cf9e82630",
                   "title": "T-25 Modificación directa de registros por insider",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Tampering",
-                  "description": "Un DBA o cuenta privilegiada altera estados o montos directamente en la base de transacciones.",
-                  "mitigation": "",
+                  "description": "Un DBA o cuenta privilegiada altera estados o montos directamente en la base de transacciones.\nRiesgo inherente: P2 x I5 = 10 (Medio). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "PAM con grabación de sesión, segregación de funciones, hash encadenado de registros.\nDetectivo: DAM con alertas sobre UPDATE/DELETE fuera de la aplicación.\nCorrectivo: Restauración desde evidencia íntegra e investigación.\nTratamiento: Mitigar | Iniciativa: R-16 | Responsable: DBA / Seguridad de la Información | Fecha objetivo: 2027-04-07",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 25,
-                  "score": ""
+                  "score": "10"
                 }
               ],
               "hasOpenThreats": true,
@@ -6370,14 +6370,14 @@
                   "id": "a417d84d-25ed-5f33-b0e7-7b92ee7ee223",
                   "title": "T-18 Inyección o alteración de órdenes en la cola",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Tampering",
-                  "description": "Con acceso a la cola, un atacante o insider inserta o modifica mensajes de órdenes antes de que el middleware los procese.",
-                  "mitigation": "",
+                  "description": "Con acceso a la cola, un atacante o insider inserta o modifica mensajes de órdenes antes de que el middleware los procese.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Firma JWS por mensaje con clave en HSM verificada por el middleware; ACL por cola; cifrado TLS.\nDetectivo: Rechazo y alerta ante mensajes con firma inválida; conciliación BD transacciones vs core.\nCorrectivo: Cuarentena de mensajes, reverso y rotación de credenciales MQ.\nTratamiento: Mitigar | Iniciativa: R-08 | Responsable: Equipo de Integración | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 18,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -6447,14 +6447,14 @@
                   "id": "6226947d-ec25-5571-8860-e6151c6bbe81",
                   "title": "T-21 Falta de trazabilidad extremo a extremo",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Repudiation",
-                  "description": "Sin un identificador de correlación no es posible demostrar qué mensaje se envió al core o a BANGUAT ni quién lo originó.",
-                  "mitigation": "",
+                  "description": "Sin un identificador de correlación no es posible demostrar qué mensaje se envió al core o a BANGUAT ni quién lo originó.\nRiesgo inherente: P3 x I4 = 12 (Alto). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Correlation ID desde el canal hasta ACH; bitácoras firmadas; conciliación diaria.\nDetectivo: Reportes de mensajes sin correlación.\nCorrectivo: Reconstrucción con evidencia y corrección del flujo.\nTratamiento: Mitigar | Iniciativa: R-11 | Responsable: SOC | Fecha objetivo: 2027-02-28",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 21,
-                  "score": ""
+                  "score": "12"
                 }
               ],
               "hasOpenThreats": true,
@@ -6531,14 +6531,14 @@
                   "id": "879c7fee-7c4f-590b-a1ac-a06a0804288e",
                   "title": "T-19 Alteración de mensajes ACH antes del envío",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Tampering",
-                  "description": "Compromiso del conector permite cambiar la cuenta beneficiaria o el monto en el mensaje ISO 20022 hacia BANGUAT.",
-                  "mitigation": "",
+                  "description": "Compromiso del conector permite cambiar la cuenta beneficiaria o el monto en el mensaje ISO 20022 hacia BANGUAT.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Firma digital del mensaje en HSM, segregación de funciones, hash del lote verificado contra la orden original.\nDetectivo: Conciliación automática orden vs mensaje enviado; alertas por diferencias.\nCorrectivo: Solicitud de reverso a BANGUAT y análisis forense.\nTratamiento: Mitigar | Iniciativa: R-08 | Responsable: Equipo de Integración | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 19,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -6615,14 +6615,14 @@
                   "id": "31b8735f-d898-55f9-874f-4be41aaf22a6",
                   "title": "T-22 Saturación del core bancario",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Denial of service",
-                  "description": "Picos de demanda (quincena, fin de mes) o reintentos en cascada agotan la capacidad del sistema legado.",
-                  "mitigation": "",
+                  "description": "Picos de demanda (quincena, fin de mes) o reintentos en cascada agotan la capacidad del sistema legado.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 8 (Medio).",
+                  "mitigation": "Circuit breakers, colas con reintento exponencial, throttling por canal, planificación de capacidad.\nDetectivo: Monitoreo de latencia y profundidad de colas.\nCorrectivo: Activación de modo degradado (solo consultas) y plan de continuidad.\nTratamiento: Mitigar | Iniciativa: R-14 | Responsable: Arquitectura / Operaciones TI | Fecha objetivo: 2027-09-30",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 22,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "hasOpenThreats": true,
@@ -6754,14 +6754,14 @@
                   "id": "18c0cd98-462f-5e10-bd2f-8ccbaf1b2d2b",
                   "title": "T-42 Indisponibilidad de BANGUAT o del procesador",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Denial of service",
-                  "description": "Una caída del tercero impide liquidar transferencias interbancarias o pagos.",
-                  "mitigation": "",
+                  "description": "Una caída del tercero impide liquidar transferencias interbancarias o pagos.\nRiesgo inherente: P2 x I4 = 8 (Medio). Riesgo residual: 8 (Medio).",
+                  "mitigation": "Colas con reintento, ventanas de corte comunicadas, canal de contingencia.\nDetectivo: Monitoreo de disponibilidad del enlace.\nCorrectivo: Comunicación a clientes y procesamiento diferido.\nTratamiento: Aceptar (fuera del control del banco) + contingencia | Iniciativa: R-14 | Responsable: Arquitectura / Operaciones TI | Fecha objetivo: 2027-09-30",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 42,
-                  "score": ""
+                  "score": "8"
                 }
               ],
               "hasOpenThreats": true,
@@ -7319,14 +7319,14 @@
                   "id": "9e1cb431-417a-5ff3-9054-44ab9c5084dd",
                   "title": "T-23 Credenciales de servicio con privilegios excesivos",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Elevation of privilege",
-                  "description": "El middleware usa una cuenta genérica con permisos administrativos sobre el core; si se compromete, el atacante opera sin límites.",
-                  "mitigation": "",
+                  "description": "El middleware usa una cuenta genérica con permisos administrativos sobre el core; si se compromete, el atacante opera sin límites.\nRiesgo inherente: P3 x I5 = 15 (Alto). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Cuenta de servicio por integración con mínimo privilegio, rotación automática desde Vault.\nDetectivo: Alertas por uso de la cuenta fuera de patrón.\nCorrectivo: Revocación y rotación de la credencial.\nTratamiento: Mitigar | Iniciativa: R-12 | Responsable: Infraestructura y Redes | Fecha objetivo: 2027-07-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 23,
-                  "score": ""
+                  "score": "15"
                 }
               ],
               "isTrustBoundary": false,
@@ -7489,14 +7489,14 @@
                   "id": "535686b1-9fe8-5100-bdb2-53cd7f4c0124",
                   "title": "T-20 Suplantación del extremo interbancario",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Spoofing",
-                  "description": "Un servidor falso (DNS spoofing o ruta alterna) se hace pasar por BANGUAT o por el procesador.",
-                  "mitigation": "",
+                  "description": "Un servidor falso (DNS spoofing o ruta alterna) se hace pasar por BANGUAT o por el procesador.\nRiesgo inherente: P2 x I5 = 10 (Medio). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "VPN IPsec dedicada, mTLS con certificados anclados, validación de huella del servidor.\nDetectivo: Monitoreo de cambios en certificados y rutas.\nCorrectivo: Corte del enlace y conmutación al canal de contingencia.\nTratamiento: Mitigar | Iniciativa: R-08 | Responsable: Equipo de Integración | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 20,
-                  "score": ""
+                  "score": "10"
                 }
               ],
               "isTrustBoundary": false,
@@ -7669,14 +7669,14 @@
                   "id": "63c1cd8e-8d83-56cd-a57d-26f7c41aae86",
                   "title": "T-41 Exposición de datos de tarjeta",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "Medium",
                   "type": "Information disclosure",
-                  "description": "Datos de tarjeta en claro en tránsito o en logs del middleware.",
-                  "mitigation": "",
+                  "description": "Datos de tarjeta en claro en tránsito o en logs del middleware.\nRiesgo inherente: P2 x I5 = 10 (Medio). Riesgo residual: 4 (Bajo).",
+                  "mitigation": "Tokenización, cumplimiento PCI DSS v4.0, no almacenar CVV, mTLS.\nDetectivo: Escaneo de PAN en logs y almacenes.\nCorrectivo: Purga de datos, notificación PCI.\nTratamiento: Transferir (tokenización del procesador) + Mitigar | Iniciativa: R-08 | Responsable: Equipo de Integración | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 41,
-                  "score": ""
+                  "score": "10"
                 }
               ],
               "isTrustBoundary": false,
@@ -7740,14 +7740,14 @@
                   "id": "11bcc905-ed57-5f5b-9099-02c0d35372e8",
                   "title": "T-48 Callback de pago falsificado",
                   "status": "Open",
-                  "severity": "TBD",
+                  "severity": "High",
                   "type": "Spoofing",
-                  "description": "Un atacante envía una confirmación falsa de pago exitoso al endpoint de callback sin autenticación.",
-                  "mitigation": "",
+                  "description": "Un atacante envía una confirmación falsa de pago exitoso al endpoint de callback sin autenticación.\nRiesgo inherente: P3 x I4 = 12 (Alto). Riesgo residual: 3 (Bajo).",
+                  "mitigation": "Verificación de firma HMAC del callback, allowlist de IP, consulta de confirmación al procesador.\nDetectivo: Conciliación diaria con el procesador.\nCorrectivo: Reverso de pagos no confirmados.\nTratamiento: Mitigar | Iniciativa: R-08 | Responsable: Equipo de Integración | Fecha objetivo: 2027-03-31",
                   "modelType": "STRIDE",
                   "new": false,
                   "number": 48,
-                  "score": ""
+                  "score": "12"
                 }
               ],
               "isTrustBoundary": false,
