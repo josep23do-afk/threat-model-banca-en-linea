@@ -3,7 +3,7 @@
   "summary": {
     "title": "Modelo de amenazas — Sistema de Banca en Línea (SBL) — Banco Modelo, S.A.",
     "owner": "Luis Francisco Gámez Rodriguez",
-    "description": "Modelo de amenazas (caso académico) de la banca en línea de una entidad ficticia: canales web y móvil, API Gateway, servicios de identidad, cuentas, transferencias, antifraude, middleware ESB, core bancario e integraciones con BANGUAT (ACH/LBTR), procesador de tarjetas, proveedor SMS y RENAP. Metodología: DFD + STRIDE, priorización Riesgo = Probabilidad x Impacto. Versión 0.3.",
+    "description": "Modelo de amenazas (caso académico) de la banca en línea de una entidad ficticia: canales web y móvil, API Gateway, servicios de identidad, cuentas, transferencias, antifraude, middleware ESB, core bancario e integraciones con BANGUAT (ACH/LBTR), procesador de tarjetas, proveedor SMS y RENAP. Metodología: DFD + STRIDE, priorización Riesgo = Probabilidad x Impacto. Versión 0.4.",
     "id": 0
   },
   "detail": {
@@ -1158,7 +1158,7 @@
                 "text": "Portal Web\n(SPA)"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1174,8 +1174,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "a480b649-5a3c-5329-b535-e518190ef97b",
+                  "title": "T-46 Cross-Site Scripting (XSS) en el portal",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Alias de beneficiario o descripción de transferencia con script que roba la sesión o altera la interfaz.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 46,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -1193,7 +1207,7 @@
                 "text": "App Móvil\nBanca"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1209,8 +1223,35 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "b7b954c4-2791-5b18-afd8-d0fa7b57f68f",
+                  "title": "T-16 Modificación de la app (repackaging / hooking)",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Ingeniería inversa y hooking (Frida) para saltar validaciones del cliente o distribuir una app falsa.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
+                },
+                {
+                  "id": "9a42332c-b7df-57e2-a469-5190c224b63a",
+                  "title": "T-17 Almacenamiento inseguro en el dispositivo",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Tokens o datos en almacenamiento no cifrado (SharedPreferences/plist).",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 17,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -1275,7 +1316,7 @@
                 "text": "1.0 WAF / CDN /\nAnti-DDoS"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1291,8 +1332,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "f71f2dd3-5ac6-5d2a-b65a-673f14edae61",
+                  "title": "T-12 Ataque DDoS al portal y a las APIs",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Ataques volumétricos o de capa 7 dejan sin servicio la banca en línea.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -1310,7 +1365,7 @@
                 "text": "2.0 API Gateway"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1326,8 +1381,48 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "f63dee71-33f5-5f0b-823e-69d8d746a9c3",
+                  "title": "T-13 Abuso de API y envío masivo de OTP (SMS pumping)",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Llamadas automatizadas sin límite agotan recursos o generan miles de SMS con costo para el banco.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                },
+                {
+                  "id": "f51ba138-f51b-5bd5-93ef-af178d93d62a",
+                  "title": "T-14 Endpoints internos o versiones obsoletas expuestas",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Rutas administrativas o versiones antiguas de la API (/v1) quedan publicadas sin los controles actuales.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                },
+                {
+                  "id": "46b26a9d-5fae-5551-b004-8951bc70f724",
+                  "title": "T-44 Explotación de vulnerabilidad conocida (CVE) en DMZ",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Componentes sin parches en el gateway o contenedores permiten ejecución remota de código.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 44,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -1427,7 +1522,7 @@
                 "text": "4.0 Servicio de\nCuentas y\nConsultas"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1443,8 +1538,48 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "eb6fd2ec-dd8f-549b-996e-af3145abace3",
+                  "title": "T-09 Acceso a cuentas de otros clientes (IDOR / BOLA)",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Cambiando el identificador de cuenta en la petición un cliente consulta saldos y movimientos de otro.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 9,
+                  "score": ""
+                },
+                {
+                  "id": "91bd8361-ccc4-50ea-9044-850a8c52f204",
+                  "title": "T-10 Exposición excesiva de datos en respuestas",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "La API devuelve el objeto completo (DPI, dirección, datos internos) y el front-end solo oculta campos.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 10,
+                  "score": ""
+                },
+                {
+                  "id": "acc2f663-5185-5e85-96b3-b670cb81a3b3",
+                  "title": "T-11 Inyección SQL en filtros de movimientos",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Parámetros de búsqueda concatenados en consultas permiten leer o modificar datos.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -1657,12 +1792,12 @@
                 "text": "BD Clientes e Identidad"
               },
               "topLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1678,8 +1813,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "fe7d9373-fb3c-592c-b055-83725dd3a036",
+                  "title": "T-24 Exfiltración de la base de clientes (PII)",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Acceso a la base o a sus respaldos sin cifrar expone datos personales de todos los clientes.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "isALog": false,
               "storesCredentials": false,
               "isEncrypted": true,
@@ -1700,7 +1849,7 @@
                 "text": "7.0 Middleware\nde Integración"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1716,8 +1865,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "746900a0-a9a6-51df-a2df-a42e0a628401",
+                  "title": "T-45 Movimiento lateral hacia la zona de datos",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Desde un servicio comprometido en DMZ o zona de aplicaciones el atacante alcanza el middleware y el core por una red plana.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 45,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -1778,12 +1941,12 @@
                 "text": "Bóveda de secretos y HSM"
               },
               "topLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1799,8 +1962,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "af774ef9-d8fd-5881-8333-7543d1f5133e",
+                  "title": "T-49 Política permisiva en la bóveda de secretos",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Políticas amplias permiten que un servicio lea secretos de otros servicios.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 49,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "isALog": false,
               "storesCredentials": false,
               "isEncrypted": true,
@@ -1903,7 +2080,7 @@
                 "text": "Proveedor SMS / Correo"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -1919,8 +2096,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "fd80928b-e3a7-513a-ade3-8e68f5db5efa",
+                  "title": "T-37 Fuga de información en el proveedor de mensajería",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Un compromiso del proveedor expone teléfonos, correos y contenido de alertas.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 37,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "providesAuthentication": false
             }
           },
@@ -2043,7 +2234,7 @@
                 "text": "Operador Back-office"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -2059,8 +2250,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "367a862a-4bdb-56e4-90a4-451bf929e9fd",
+                  "title": "T-30 Suplantación de un operador interno",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Credenciales de un operador obtenidas por phishing interno permiten operar el back-office.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "providesAuthentication": false
             }
           },
@@ -2113,7 +2318,7 @@
                 "text": "8.0 Portal\nBack-office"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -2129,8 +2334,48 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "e7f6d38a-17a4-5b79-b0b4-aa95ae95bca3",
+                  "title": "T-29 Escalamiento de privilegios en back-office",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Un operador accede a funciones de supervisor (cambio de límites, desbloqueos) por fallas de control de acceso.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": ""
+                },
+                {
+                  "id": "e4bf95a1-d258-5bb2-ac06-a9d4996af095",
+                  "title": "T-31 Repudio de cambios hechos por operadores",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Un operador niega haber modificado datos de un cliente y no hay evidencia suficiente.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": ""
+                },
+                {
+                  "id": "a5c3732b-48f6-564d-98fd-dd90bb4e0e78",
+                  "title": "T-32 Cambio fraudulento del teléfono o correo del cliente",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Vía soporte se cambia el número asociado al OTP y luego se toma control de la cuenta.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -2148,7 +2393,7 @@
                 "text": "11.0 Pipeline\nCI/CD"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -2164,8 +2409,35 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "2a359585-ae45-59b4-a9ee-ef081f7c1016",
+                  "title": "T-27 Secretos embebidos en código y configuración",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Contraseñas, API keys o certificados en el repositorio o en variables del pipeline son extraídos por un atacante o ex colaborador.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": ""
+                },
+                {
+                  "id": "58a08c54-57e1-5141-8ffc-bffb3b47e9db",
+                  "title": "T-28 Compromiso de la cadena de suministro",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Una dependencia maliciosa o un runner comprometido inyecta código en los artefactos desplegados.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -2183,12 +2455,12 @@
                 "text": "Plataforma de logs / SIEM"
               },
               "topLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -2204,8 +2476,48 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "8162a393-f629-5ffb-826c-528336800eb4",
+                  "title": "T-33 Datos sensibles en bitácoras",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Tokens, contraseñas o PAN quedan registrados en logs accesibles por más personas.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": ""
+                },
+                {
+                  "id": "de15ec6a-4414-51b2-a9a0-cefba59eec1b",
+                  "title": "T-34 Borrado o alteración de bitácoras",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Un atacante con privilegios borra eventos para ocultar su actividad.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 34,
+                  "score": ""
+                },
+                {
+                  "id": "f06c7eca-1671-585b-9b6d-871ba2c246b8",
+                  "title": "T-35 Bitácoras insuficientes o sin sincronización de hora",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Eventos incompletos o con relojes desfasados impiden reconstruir un incidente.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 35,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "isALog": true,
               "storesCredentials": false,
               "isEncrypted": true,
@@ -2434,7 +2746,7 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.2,
                 "targetMarker": {
                   "name": "block"
@@ -2458,8 +2770,22 @@
               "protocol": "HTTPS TLS 1.3",
               "isEncrypted": true,
               "isPublicNetwork": true,
-              "hasOpenThreats": false,
-              "threats": [],
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "11bce15d-1305-5510-85f8-b46eeb3a0c98",
+                  "title": "T-15 Interceptación del tráfico móvil (MitM)",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Sin certificate pinning un atacante con un certificado instalado en el dispositivo lee y altera el tráfico.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                }
+              ],
               "isTrustBoundary": false,
               "isBidirectional": false
             },
@@ -2974,7 +3300,7 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.2,
                 "targetMarker": {
                   "name": "block"
@@ -2998,8 +3324,22 @@
               "protocol": "HTTPS",
               "isEncrypted": true,
               "isPublicNetwork": true,
-              "hasOpenThreats": false,
-              "threats": [],
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "06a6b14f-fd86-5006-8723-efe57366948e",
+                  "title": "T-43 Exposición o abuso de la consulta de DPI",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "La integración con RENAP es usada para enumerar ciudadanos o la respuesta completa se almacena sin necesidad.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 43,
+                  "score": ""
+                }
+              ],
               "isTrustBoundary": false,
               "isBidirectional": false
             },
@@ -3913,7 +4253,7 @@
                 "text": "Cliente"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -3929,8 +4269,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "2ddd732d-cd37-5c6c-b02a-37f97bcaf84c",
+                  "title": "T-01 Toma de cuenta por phishing (robo de credenciales)",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Un atacante clona el sitio del banco o envía enlaces maliciosos y obtiene usuario y contraseña del cliente para iniciar sesión en su nombre.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 1,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "providesAuthentication": false
             }
           },
@@ -4137,7 +4491,7 @@
                 "text": "3.1 Validación\nde credenciales"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -4153,8 +4507,48 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "2f529267-133c-57a0-accd-41d07203b4db",
+                  "title": "T-02 Credential stuffing y fuerza bruta contra el login",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Uso automatizado de listas de credenciales filtradas en otros servicios para adivinar contraseñas de clientes.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 2,
+                  "score": ""
+                },
+                {
+                  "id": "bb293bba-e2d7-5aa9-a232-21744185a8d3",
+                  "title": "T-06 Enumeración de usuarios",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Mensajes de error o tiempos de respuesta diferentes revelan si un usuario existe.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 6,
+                  "score": ""
+                },
+                {
+                  "id": "1dbccd33-fc83-5735-ba25-705ec0e247ca",
+                  "title": "T-47 Bloqueo masivo de cuentas inducido",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "El atacante provoca bloqueos de cuentas legítimas con intentos fallidos deliberados.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 47,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -4172,7 +4566,7 @@
                 "text": "3.2 Motor MFA\n(OTP)"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -4188,8 +4582,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "97c754f5-9de9-5361-916a-ec51db0fd8a0",
+                  "title": "T-03 Interceptación del OTP por SIM swapping",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "El atacante obtiene un duplicado de la SIM del cliente y recibe el OTP por SMS para completar el login o confirmar transferencias.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 3,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -4207,7 +4615,7 @@
                 "text": "3.3 Emisor de\ntokens (OIDC)"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -4223,8 +4631,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "89ace580-e8e1-514c-b30a-32c8586cf191",
+                  "title": "T-04 Falsificación o aceptación indebida de tokens JWT",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Tokens aceptados con 'alg: none', claves débiles o sin validar iss/aud/exp permiten a un atacante fabricar identidades.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -4242,7 +4664,7 @@
                 "text": "3.4 Gestión de\nsesiones"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -4258,8 +4680,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "2eb4325c-10f2-5902-8744-9972ca7d5ced",
+                  "title": "T-05 Secuestro de sesión y reuso de refresh token",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Robo del token desde el dispositivo o vía XSS y reuso del refresh token para mantener acceso persistente.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 5,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -4277,12 +4713,12 @@
                 "text": "Caché de sesiones"
               },
               "topLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -4298,8 +4734,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "36080934-54d7-5806-800d-1fba422331d2",
+                  "title": "T-36 Acceso no autenticado a Redis",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Una instancia Redis sin autenticación o expuesta permite leer y alterar sesiones activas.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 36,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "isALog": false,
               "storesCredentials": false,
               "isEncrypted": true,
@@ -4367,12 +4817,12 @@
                 "text": "BD Identidad"
               },
               "topLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -4388,8 +4838,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "409fd0e7-f74b-55ea-8b47-95e4b8ab3f22",
+                  "title": "T-26 Hash de contraseñas débil",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Si la base de identidad se filtra, algoritmos como MD5/SHA-1 permiten recuperar contraseñas.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "isALog": false,
               "storesCredentials": true,
               "isEncrypted": true,
@@ -4987,7 +5451,7 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.2,
                 "targetMarker": {
                   "name": "block"
@@ -5011,8 +5475,22 @@
               "protocol": "HTTPS API",
               "isEncrypted": true,
               "isPublicNetwork": true,
-              "hasOpenThreats": false,
-              "threats": [],
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "69f97fec-2088-5638-bdae-642c63e0966e",
+                  "title": "T-38 Smishing que suplanta al banco",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Mensajes SMS falsos con el nombre del banco dirigen a los clientes a sitios de phishing.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 38,
+                  "score": ""
+                }
+              ],
               "isTrustBoundary": false,
               "isBidirectional": false
             },
@@ -5524,7 +6002,7 @@
                 "text": "5.1 Validación\nde la orden"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -5540,8 +6018,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "59d28a54-8eb5-5cd5-be4a-1fbad8facf7d",
+                  "title": "T-08 Manipulación de parámetros de la transferencia",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Interceptando la petición (proxy) se altera monto, cuenta origen o destino, o se añaden campos no previstos (mass assignment).",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 8,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -5594,7 +6086,7 @@
                 "text": "6.0 Motor\nAntifraude"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -5610,8 +6102,35 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "ac41e407-b8b6-530c-aca1-bead10bdb51d",
+                  "title": "T-39 Evasión del antifraude o fallo abierto",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "Fraccionamiento de montos bajo los umbrales o explotación de que, si el antifraude no responde, la transacción se aprueba (fail-open).",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 39,
+                  "score": ""
+                },
+                {
+                  "id": "3117f003-d094-5186-9e17-e6392feb297b",
+                  "title": "T-40 Alteración de reglas antifraude",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Un usuario interno modifica umbrales o listas blancas para dejar pasar operaciones fraudulentas.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 40,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -5629,7 +6148,7 @@
                 "text": "5.3 Registro y\nfirma de la\norden"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -5645,8 +6164,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "b96d44e0-0430-50b0-8d74-f2fada95b9dc",
+                  "title": "T-07 Repudio de transferencias por parte del cliente",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "El cliente niega haber ordenado una transferencia y el banco no puede demostrar quién, cuándo y desde dónde la autorizó.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 7,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -5664,12 +6197,12 @@
                 "text": "BD Transacciones"
               },
               "topLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -5685,8 +6218,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "3d452770-3a92-577c-b4fc-154cf9e82630",
+                  "title": "T-25 Modificación directa de registros por insider",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Un DBA o cuenta privilegiada altera estados o montos directamente en la base de transacciones.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "isALog": false,
               "storesCredentials": false,
               "isEncrypted": true,
@@ -5797,12 +6344,12 @@
                 "text": "Cola de mensajes (MQ)"
               },
               "topLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               },
               "bottomLine": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -5818,8 +6365,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "a417d84d-25ed-5f33-b0e7-7b92ee7ee223",
+                  "title": "T-18 Inyección o alteración de órdenes en la cola",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Con acceso a la cola, un atacante o insider inserta o modifica mensajes de órdenes antes de que el middleware los procese.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 18,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "isALog": false,
               "storesCredentials": false,
               "isEncrypted": true,
@@ -5865,7 +6426,7 @@
                 "text": "7.1 Orquestador\nmiddleware"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -5881,8 +6442,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "6226947d-ec25-5571-8860-e6151c6bbe81",
+                  "title": "T-21 Falta de trazabilidad extremo a extremo",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Repudiation",
+                  "description": "Sin un identificador de correlación no es posible demostrar qué mensaje se envió al core o a BANGUAT ni quién lo originó.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -5935,7 +6510,7 @@
                 "text": "7.3 Conector\nACH"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -5951,8 +6526,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "879c7fee-7c4f-590b-a1ac-a06a0804288e",
+                  "title": "T-19 Alteración de mensajes ACH antes del envío",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Tampering",
+                  "description": "Compromiso del conector permite cambiar la cuenta beneficiaria o el monto en el mensaje ISO 20022 hacia BANGUAT.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 19,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -6005,7 +6594,7 @@
                 "text": "10.0 Core\nBancario"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -6021,8 +6610,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "31b8735f-d898-55f9-874f-4be41aaf22a6",
+                  "title": "T-22 Saturación del core bancario",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Picos de demanda (quincena, fin de mes) o reintentos en cascada agotan la capacidad del sistema legado.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "privilegeLevel": ""
             }
           },
@@ -6130,7 +6733,7 @@
                 "text": "BANGUAT — ACH / LBTR"
               },
               "body": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.5,
                 "strokeDasharray": null
               }
@@ -6146,8 +6749,22 @@
               "isTrustBoundary": false,
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "threats": [],
-              "hasOpenThreats": false,
+              "threats": [
+                {
+                  "id": "18c0cd98-462f-5e10-bd2f-8ccbaf1b2d2b",
+                  "title": "T-42 Indisponibilidad de BANGUAT o del procesador",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Denial of service",
+                  "description": "Una caída del tercero impide liquidar transferencias interbancarias o pagos.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 42,
+                  "score": ""
+                }
+              ],
+              "hasOpenThreats": true,
               "providesAuthentication": false
             }
           },
@@ -6672,7 +7289,7 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.2,
                 "targetMarker": {
                   "name": "block"
@@ -6696,8 +7313,22 @@
               "protocol": "MQ (ISO 8583)",
               "isEncrypted": true,
               "isPublicNetwork": false,
-              "hasOpenThreats": false,
-              "threats": [],
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "9e1cb431-417a-5ff3-9054-44ab9c5084dd",
+                  "title": "T-23 Credenciales de servicio con privilegios excesivos",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Elevation of privilege",
+                  "description": "El middleware usa una cuenta genérica con permisos administrativos sobre el core; si se compromete, el atacante opera sin límites.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                }
+              ],
               "isTrustBoundary": false,
               "isBidirectional": false
             },
@@ -6828,7 +7459,7 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.2,
                 "targetMarker": {
                   "name": "block"
@@ -6852,8 +7483,22 @@
               "protocol": "VPN IPsec + firma",
               "isEncrypted": true,
               "isPublicNetwork": false,
-              "hasOpenThreats": false,
-              "threats": [],
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "535686b1-9fe8-5100-bdb2-53cd7f4c0124",
+                  "title": "T-20 Suplantación del extremo interbancario",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Un servidor falso (DNS spoofing o ruta alterna) se hace pasar por BANGUAT o por el procesador.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 20,
+                  "score": ""
+                }
+              ],
               "isTrustBoundary": false,
               "isBidirectional": false
             },
@@ -6994,7 +7639,7 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.2,
                 "targetMarker": {
                   "name": "block"
@@ -7018,8 +7663,22 @@
               "protocol": "mTLS",
               "isEncrypted": true,
               "isPublicNetwork": false,
-              "hasOpenThreats": false,
-              "threats": [],
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "63c1cd8e-8d83-56cd-a57d-26f7c41aae86",
+                  "title": "T-41 Exposición de datos de tarjeta",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Information disclosure",
+                  "description": "Datos de tarjeta en claro en tránsito o en logs del middleware.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 41,
+                  "score": ""
+                }
+              ],
               "isTrustBoundary": false,
               "isBidirectional": false
             },
@@ -7051,7 +7710,7 @@
             "shape": "flow",
             "attrs": {
               "line": {
-                "stroke": "#333333",
+                "stroke": "red",
                 "strokeWidth": 1.2,
                 "targetMarker": {
                   "name": "block"
@@ -7075,8 +7734,22 @@
               "protocol": "HTTPS",
               "isEncrypted": true,
               "isPublicNetwork": true,
-              "hasOpenThreats": false,
-              "threats": [],
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "11bcc905-ed57-5f5b-9099-02c0d35372e8",
+                  "title": "T-48 Callback de pago falsificado",
+                  "status": "Open",
+                  "severity": "TBD",
+                  "type": "Spoofing",
+                  "description": "Un atacante envía una confirmación falsa de pago exitoso al endpoint de callback sin autenticación.",
+                  "mitigation": "",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 48,
+                  "score": ""
+                }
+              ],
               "isTrustBoundary": false,
               "isBidirectional": false
             },
@@ -7166,6 +7839,6 @@
     ],
     "diagramTop": 4,
     "reviewer": "Docente — Seguridad en Aplicaciones (093-013)",
-    "threatTop": 0
+    "threatTop": 49
   }
 }
